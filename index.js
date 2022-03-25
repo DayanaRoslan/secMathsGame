@@ -7,6 +7,7 @@ $(document).ready(function(){
     return Math.ceil(Math.random() * size);
   }
   
+
   var questionGenerator = function () {
     var question = {};
     var num1 = randomNumberGenerator(10);
@@ -18,6 +19,7 @@ $(document).ready(function(){
     return question;
   }
   
+
   var renderNewQuestion = function () {
     currentQuestion = questionGenerator();
     $('#equation').text(currentQuestion.equation);  
@@ -38,13 +40,12 @@ $(document).ready(function(){
     checkAnswer(Number($(this).val()), currentQuestion.answer);
   });
 
-  renderNewQuestion();
-
-
+  
   var startGame = function () {
     if (!interval) {
       if (timeLeft === 0) {
         updateTimeLeft(10);
+        updateScore(-score);
       }
       interval = setInterval(function () {
         updateTimeLeft(-1);
@@ -66,6 +67,9 @@ $(document).ready(function(){
     score += amount;
     $('#score').text(score);
   };
+
+
+  renderNewQuestion();
 
 
 });

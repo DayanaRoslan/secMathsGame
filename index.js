@@ -2,6 +2,7 @@ $(document).ready(function(){
   var currentQuestion;
   var interval;
   var timeLeft = 10;
+  var score = 0;
   var randomNumberGenerator = function (size) {
     return Math.ceil(Math.random() * size);
   }
@@ -28,6 +29,7 @@ $(document).ready(function(){
       renderNewQuestion();
       $('#user-input').val('');
       updateTimeLeft(+1);
+      updateScore(+1);
     }
   }
   
@@ -59,6 +61,11 @@ $(document).ready(function(){
     timeLeft += amount;
     $('#time-left').text(timeLeft);
   }
+
+  var updateScore = function (amount) {
+    score += amount;
+    $('#score').text(score);
+  };
 
 
 });

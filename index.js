@@ -3,6 +3,7 @@ $(document).ready(function(){
   var interval;
   var timeLeft = 10;
   var score = 0;
+  var highScore = 0;
   var randomNumberGenerator = function (size) {
     return Math.ceil(Math.random() * size);
   }
@@ -10,8 +11,8 @@ $(document).ready(function(){
 
   var questionGenerator = function () {
     var question = {};
-    var num1 = randomNumberGenerator(10);
-    var num2 = randomNumberGenerator(10);
+    var num1 = randomNumberGenerator(20);
+    var num2 = randomNumberGenerator(15);
     
     question.answer = num1 + num2;
     question.equation = String(num1) + " + " + String(num2);
@@ -45,8 +46,13 @@ $(document).ready(function(){
     if (!interval) {
       if (timeLeft === 0) {
         updateTimeLeft(10);
-        updateScore(-score);
-      }
+      } if (score > highScore) {
+        highScore = score;
+        $('#high-score').text(score);
+      } 
+      
+      updateScore(-score);
+
       interval = setInterval(function () {
         updateTimeLeft(-1);
         if (timeLeft === 0) {
@@ -67,6 +73,8 @@ $(document).ready(function(){
     score += amount;
     $('#score').text(score);
   };
+
+ 
 
 
   renderNewQuestion();

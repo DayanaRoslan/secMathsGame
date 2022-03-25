@@ -1,5 +1,6 @@
 $(document).ready(function(){
   var currentQuestion;
+  var timeLeft = 10;
   var randomNumberGenerator = function (size) {
     return Math.ceil(Math.random() * size);
   }
@@ -33,5 +34,15 @@ $(document).ready(function(){
   });
 
   renderNewQuestion();
+
+
+  var interval = setInterval(function () {
+    timeLeft--;
+    $('#time-left').text(timeLeft);
+    if (timeLeft === 0) {
+      clearInterval(interval);
+    }
+  }, 1000);
+
 
 });
